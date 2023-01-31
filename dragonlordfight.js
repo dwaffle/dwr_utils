@@ -14,10 +14,17 @@ function readForms(){
         } 
     }
     let winPercent = ((wins/10000) * 100).toFixed(2)
-    let miniPower = checkForNumber(attackPower)
-    miniPower = playerMinAttack(miniPower)
     let maxiPower = checkForNumber(attackPower)
-    maxiPower = playerMaxAttack(maxiPower)
+    let miniPower = checkForNumber(attackPower)
+    if(!hasDeathNecklace){
+        
+        miniPower = playerMinAttack(miniPower)
+       
+        maxiPower = playerMaxAttack(maxiPower)
+    } else {
+        miniPower = playerMinAttack(miniPower + 10)
+        maxiPower = polayerMaxAttack(maxiPower + 10)
+    }
     setResults("Your minimum attack is " + miniPower + "\nYour maximum attack is " + maxiPower + "\nOut of 10000 tries, you won " + wins + " for a result of " + winPercent +"%")
 }
 
