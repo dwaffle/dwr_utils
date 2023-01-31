@@ -1,0 +1,71 @@
+<!DOCTYPE html5>
+<head>
+    <title>Dragon Warrior Randomizer Utilities</title>
+    <script src="./dragonlordfight.js"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="title-page">
+    <h1>Odds Calculator for Defeating the Dragonlord in Dragon Warrior Randomizer</h1>
+    </div>
+    <div class="firstRow row">
+        <div class="col">
+        <input type="text" id="attack-power" class="numberInput numberLeft"><label class="formLabel">Attack Power</label>
+    </div>
+        <div class="col">
+        <input type="text" id="hp" class="numberInput numberMiddle"> <label class="formLabel formLabelMiddle">Your HP</label><br>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <div class="secondRow row">
+        <div class="col">
+            <input type="text" id="mp" class="numberInput numberLeft"><label class="formLabel">Your MP</label>
+        </div>
+        <div class="col">
+            <input type="text" id="fairy-water" class="numberInput numberMiddle"><label class="formLabel">Fairy Waters</label>
+        </div>
+        <div class="col"></div>
+    </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" id="max-hp" class="numberInput numberLeft"><label class="formLabel">Your maximum HP</label>
+            </div>
+            <div class="col">
+            <input type="text" id="defense" class="numberInput right" value="80"><label class="formLabel">Total defense</label>
+        </div>
+        <div class="col" />
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col input-group-1">
+            Have Death Necklace?
+            <input type="radio" name="dn" id="dn" value="Yes" aria-label="Yes"> Yes
+            <input type="radio" name="dn" id="dn" value="No" aria-label="No" checked> No
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="instructions-container col">
+        Assign your attack power, hp, mp, and fairy waters to the boxes.  Click to equip the Death Necklace.<br>
+        Decimals will be rounded down, empty boxes are 0.<br>
+        Always fights cautiously, will not attack if there is a chance of being killed in one hit.
+
+        </div>
+    </div>
+    <div class="submit-container row">
+        <div class="col"></div>
+            <div class="col">
+            <input type="submit" id="submitButton" class="submitButton btn btn-primary" onclick="readForms()"><br>
+
+            <textarea id="result" class="results">Your results show up here.</textarea>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</body>

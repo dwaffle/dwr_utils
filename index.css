@@ -1,0 +1,32 @@
+h1{
+    margin-left: 15px;
+    font-size:200%;
+    margin-bottom: 20px;
+}
+
+.numberInput{
+    margin:4px;
+}
+
+.formLabel{
+    font-weight: 200%;
+}
+
+.results{
+    width: 325px;
+    height: 200px;
+}
+
+.submitButton{
+    margin: 20px;
+}
+
+.instructions-container{
+    margin-top: 10px;
+    size: 2000%;
+}
+
+body{
+    background-image: url("./resources/background-2.png");
+    background-color: white;
+}

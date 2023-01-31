@@ -1,0 +1,51 @@
+<!DOCTYPE html5>
+<head>
+    <title>Odds Calculator</title>
+    <script src="./encounter-calculator.js"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="title-page">
+    <h1>Odds Calculator for Encounters in Dragon Warrior</h1>
+    </div>
+    <div class="firstRow row">
+        <div class="col">
+        <input type="text" id="bridgeEncounterTiles" class="numberInput numberLeft"><label class="formLabel">Number of Bridge tiles</label>
+    </div>
+        <div class="col">
+        <input type="text" id="lowEncounterTiles" class="numberInput numberMiddle"> <label class="formLabel formLabelMiddle">Number of Grass Tiles</label><br>
+        </div>
+        <div class="col"></div>
+    </div>
+
+    <div class="secondRow row">
+        <div class="col">
+            <input type="text" id="mediumEncounterTiles" class="numberInput numberLeft"><label class="formLabel">Number of Forest/Swamp/Brick/Barrier Tiles</label>
+        </div>
+        <div class="col">
+            <input type="text" id="highEncounterTiles" class="numberInput numberMiddle"> <label class="formLabel formLabelMiddle">Number of Hill or Desert Tiles</label><br>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="instructions-container col">
+        Put the number of tiles of a type to traverse into each box.  Boxes left empty or with numbers less than 0 will be changed to 0.<br>
+        Decimals will be rounded down.
+
+        </div>
+    </div>
+    <div class="submit-container row">
+        <div class="col"></div>
+            <div class="col">
+            <input type="submit" id="submitButton" class="submitButton btn btn-primary" onclick="readForms()"><br>
+
+            <textarea id="result" class="results">Your results show up here.</textarea>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</body>
