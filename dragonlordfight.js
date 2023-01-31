@@ -23,7 +23,7 @@ function readForms(){
         maxiPower = playerMaxAttack(maxiPower)
     } else {
         miniPower = playerMinAttack(miniPower + 10)
-        maxiPower = polayerMaxAttack(maxiPower + 10)
+        maxiPower = playerMaxAttack(maxiPower + 10)
     }
     setResults("Your minimum attack is " + miniPower + "\nYour maximum attack is " + maxiPower + "\nOut of 10000 tries, you won " + wins + " for a result of " + winPercent +"%")
 }
