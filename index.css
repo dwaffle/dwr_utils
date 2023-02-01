@@ -30,3 +30,20 @@ body{
     background-image: url("./resources/background-2.png");
     background-color: white;
 }
+
+ul{
+    padding-top:4px;
+}
+
+.getting-started{
+    margin: 5px;
+}
+
+.instructions{
+    margin: 5px;
+}
+
+.gold_grind{
+    width: 45%;
+    margin: 5px;
+}
