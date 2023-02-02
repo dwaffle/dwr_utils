@@ -47,3 +47,8 @@ ul{
     width: 45%;
     margin: 5px;
 }
+
+.footer{
+    background-color: black;
+    color:white;
+}
