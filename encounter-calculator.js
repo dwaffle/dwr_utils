@@ -25,7 +25,7 @@ async function calculate(bridgeEncounterTiles, lowEncounterTiles, medEncounterTi
                 }
             }
             for(let i = 0; i < lowEncounterTiles; i++){
-                if(randomNumber(1,24) === 1){
+                if(randomNumber(1,213) <= 10){
                     totalEnemiesEncountered++
                 }
             }
