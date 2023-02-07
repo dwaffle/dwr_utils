@@ -67,10 +67,10 @@ function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWate
                 playerHp = playerMaxHp
             }
         } else {
-            //If you have a fairy water, and it's doing more damage than swinging, throw it.
-            if((fairyWaters > 0) && (playerMaxPower < 16)){
+            //If you have a fairy water, and it's doing more damage (or the same.  Minimum swing with 16 max is 8 fairy water min is 9) than swinging, throw it.
+            if((fairyWaters > 0) && (playerMaxPower <= 16)){
                 fairyWaters--
-                dlHp -= randomNumber(8, 16)
+                dlHp -= randomNumber(9, 16)
             } else {
                 dlHp -= playerAttack(playerMinPower, playerMaxPower)
             }
