@@ -139,14 +139,14 @@ function playerMinAttack(attackPower, hasDeathNecklace){
     if(hasDeathNecklace){
         attackPower += 10
     }
-    return Math.floor((attackPower - 100) / 4)
+    return Math.max(0, (Math.floor((attackPower - 100) / 4)))
 }
 
 function playerMaxAttack(attackPower, hasDeathNecklace){
     if(hasDeathNecklace){
         attackPower += 10
     }
-    return Math.floor((attackPower - 100) / 2)
+    return Math.max(1, (Math.floor((attackPower - 100) / 2)))
 }
 
 function dragonlordMinAttack(playerDefense){
