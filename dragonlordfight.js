@@ -7,9 +7,10 @@ function readForms(){
     let playerDefense = document.getElementById("defense").value
     let hasDeathNecklace = findDeathNecklaceChecked()
     let playerMaxHp = document.getElementById("max-hp").value
+    let swingOption = getSwingOption()
     let wins = 0;
     for(let i = 0; i < 10000; i++){
-        if(fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense) === true) {
+        if(fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption) === true) {
             wins++
         } 
     }
@@ -30,7 +31,7 @@ function readForms(){
 
 
 
-function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense){
+function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption){
     //Set up the fight.
     attackPower = checkForNumber(attackPower)
     playerHp = checkForNumber(playerHp)
@@ -60,7 +61,7 @@ function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWate
             } 
         }
         //Player's turn.  True represents casting HEALMORE, otherwise attack.
-        if((playerDecision(playerHp, dlMaxAttack) === true) && playerMp >= 8){
+        if((playerDecision(playerHp, dlMaxAttack, swingOption) === true) && playerMp >= 8){
             playerMp -=8  
             playerHp += castHealmore(playerMaxHp)
             if(playerHp > playerMaxHp){
@@ -116,14 +117,32 @@ function dragonlordTurn(minAttack,maxAttack){
     return damage
 }
 
-function playerDecision(playerHp, dragonlordMaxAttack){
-    //Fights cautiously, always casts HEALMORE if they have enough MP and can be taken out in one DL2 hit.
-    if(playerHp < dragonlordMaxAttack || playerHp < 48){
-        //Cast HEALMORE
-        return true
+function playerDecision(playerHp, dragonlordMaxAttack, swingOption){
+    
+    switch(swingOption){
+        case "Cautiously":
+        if(playerHp < dragonlordMaxAttack || playerHp < 48){
+            //Cast HEALMORE
+            return true
+        }
+            //Otherwise attack
+            return false
+        //Attack on 48 hp
+        case "48":
+            if(playerHp < 47){
+                return true
+            }
+            return false
+        //Attack on 47 hp
+        case "47":
+            if(playerHp < 46){
+                return true
+            }
+            return false
+        default:
+            console.error("Out of range error")
+            setResults("Out of range error.  Let EMP know at the email below.")
     }
-    //Otherwise attack
-    return false
 }
 
 function castHealmore(playerMaxHp){
@@ -168,6 +187,11 @@ function findDeathNecklaceChecked(){
     return selectedValue.value === "Yes"
 }
 
+function getSwingOption(){
+    let selectedValue = document.querySelector('input[name="swing-options"]:checked').value
+    return selectedValue
+}
+
 //returns a random number between min and max.
 function randomNumber(min, max){
     //min is inclusive, max is now inclusive too.
@@ -184,6 +208,7 @@ function checkForNumber(number){
     
     return Math.floor(number);
 }
+
 function setResults(results){
     let q = document.getElementById("result")
     q.textContent = results
