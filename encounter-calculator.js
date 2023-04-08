@@ -1,29 +1,22 @@
 
 
 function readForms(){
-    let bridgeEncounterTiles = document.getElementById("bridgeEncounterTiles").value
     let lowEncounterTiles = document.getElementById("lowEncounterTiles").value
     let medEncounterTiles = document.getElementById("mediumEncounterTiles").value
     let highEncounterTiles = document.getElementById("highEncounterTiles").value
-    bridgeEncounterTiles = checkForNumber(bridgeEncounterTiles)
     lowEncounterTiles = checkForNumber(lowEncounterTiles)
     medEncounterTiles = checkForNumber(medEncounterTiles)
     highEncounterTiles = checkForNumber(highEncounterTiles)
-    calculate(bridgeEncounterTiles, lowEncounterTiles, medEncounterTiles, highEncounterTiles)
+    calculate(lowEncounterTiles, medEncounterTiles, highEncounterTiles)
 }
 
 //Async to not block main thread.  May need to put in a cap
 //Noticible pause at a hundred thousand.
-async function calculate(bridgeEncounterTiles, lowEncounterTiles, medEncounterTiles, highEncounterTiles){
+function calculate(lowEncounterTiles, medEncounterTiles, highEncounterTiles){
     let totalEnemiesEncountered = 0
     let totalEncounterRate = 0
-    let totalTiles = Number(bridgeEncounterTiles) + Number(lowEncounterTiles) + Number(medEncounterTiles) + Number(highEncounterTiles)
+    let totalTiles = Number(lowEncounterTiles) + Number(medEncounterTiles) + Number(highEncounterTiles)
         for(let j = 0; j < 1000; j++){
-            for(let i = 0; i < bridgeEncounterTiles; i++){
-                if(randomNumber(1, 48) === 1){
-                    totalEnemiesEncountered++
-                }
-            }
             for(let i = 0; i < lowEncounterTiles; i++){
                 if(randomNumber(1,213) <= 10){
                     totalEnemiesEncountered++
