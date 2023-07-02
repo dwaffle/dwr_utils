@@ -47,7 +47,7 @@ function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWate
     let turnCounter = 1
     if(hasDeathNecklace){
         //Having the Death Necklace on costs 25% of your max hp
-        playerMaxHp -= (playerHp * .25)
+        playerMaxHp -= (playerMaxHp * .25)
     }
     if (playerHp > playerMaxHp){
         playerHp = playerMaxHp
