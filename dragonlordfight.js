@@ -1,4 +1,8 @@
+
+let doublesOverAllFights = 0
+
 //Get the data from the page
+
 function readForms(){
     let attackPower = document.getElementById("attack-power").value
     let playerHp = document.getElementById("hp").value
@@ -8,13 +12,20 @@ function readForms(){
     let hasDeathNecklace = findDeathNecklaceChecked()
     let playerMaxHp = document.getElementById("max-hp").value
     let swingOption = getSwingOption()
-    let wins = 0;
+    let wins = 0
+    let dlFight = {}
+    let totalDoubles = 0
+    let attacks = 0
     for(let i = 0; i < 10000; i++){
-        if(fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption) === true) {
+        dlFight = fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption)
+        if(dlFight.hasWon === true) {
             wins++
         } 
+        totalDoubles += dlFight.currentDoubles
+        attacks += dlFight.totalAttacks
     }
     let winPercent = ((wins/10000) * 100).toFixed(2)
+    let doublePercent = ((wins/attacks) * 100).toFixed(2)
     let maxiPower = checkForNumber(attackPower)
     let miniPower = checkForNumber(attackPower)
     if(!hasDeathNecklace){
@@ -26,7 +37,7 @@ function readForms(){
         miniPower = playerMinAttack(miniPower + 10)
         maxiPower = playerMaxAttack(maxiPower + 10)
     }
-    setResults("Your minimum attack is " + miniPower + "\nYour maximum attack is " + maxiPower + "\nOut of 10000 tries, you won " + wins + " for a result of " + winPercent +"%")
+    setResults("Your minimum attack is " + miniPower + "\nYour maximum attack is " + maxiPower + "\nYou scored " + totalDoubles + " multiple attacks, attacking again " + doublePercent + "% of the time in " + attacks + " attacks" + "\nOut of 10000 tries, you won " + wins + " for a result of " + winPercent +"%")
 }
 
 
@@ -42,6 +53,9 @@ function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWate
     dlMaxAttack = dragonlordMaxAttack(playerDefense)
     let playerMinPower = playerMinAttack(attackPower, hasDeathNecklace)
     let playerMaxPower = playerMaxAttack(attackPower, hasDeathNecklace)
+    let canDouble = false;
+    let currentDoubles = 0
+    let totalAttacks = 0
     hasWon = false
     dlHp = randomNumber(150, 165)
     let turnCounter = 1
@@ -67,13 +81,22 @@ function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWate
             if(playerHp > playerMaxHp){
                 playerHp = playerMaxHp
             }
+            //Didn't double attack.
+            canDouble = false
         } else {
+            totalAttacks++
             //If you have a fairy water, and it's doing more damage (or the same.  Minimum swing with 16 max is 8 fairy water min is 9) than swinging, throw it.
             if((fairyWaters > 0) && (playerMaxPower <= 16)){
                 fairyWaters--
                 dlHp -= randomNumber(9, 16)
             } else {
                 dlHp -= playerAttack(playerMinPower, playerMaxPower)
+            }
+            //Track double attack times.
+            if(canDouble === true){
+                currentDoubles++
+            } else {
+                canDouble = true
             }
         }
         //Dragonlord's turn
@@ -86,7 +109,7 @@ function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWate
     } else {
         hasWon = true
     }
-    return hasWon
+    return {hasWon, currentDoubles, totalAttacks}
 }
 
 function dragonlordTurn(minAttack,maxAttack){
