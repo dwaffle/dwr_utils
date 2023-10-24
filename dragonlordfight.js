@@ -116,17 +116,19 @@ function dragonlordTurn(minAttack,maxAttack){
     //Represents the breath attack.  Slightly favors the middle numbers.
     let damage = 0
     if(randomNumber(1, 2) === 1){
-        let breathAttackRange = randomNumber(1, 6)
+        let breathAttackRange = randomNumber(1, 8)
         switch(breathAttackRange){
             case 1:
                 damage = 42
                 break
             case 2:
             case 3:
+            case 4:
                 damage = 44
                 break
-            case 4:
             case 5:
+            case 6:
+            case 7:
                 damage = 46
                 break
             case 6:
