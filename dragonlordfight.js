@@ -1,6 +1,7 @@
 
 let doublesOverAllFights = 0
 
+
 //Get the data from the page
 
 function readForms(){
@@ -12,12 +13,13 @@ function readForms(){
     let hasDeathNecklace = findDeathNecklaceChecked()
     let playerMaxHp = document.getElementById("max-hp").value
     let swingOption = getSwingOption()
+    let forceBackAttack = getBackAttackOption();
     let wins = 0
     let dlFight = {}
     let totalDoubles = 0
     let attacks = 0
     for(let i = 0; i < 10000; i++){
-        dlFight = fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption)
+        dlFight = fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption, forceBackAttack)
         if(dlFight.hasWon === true) {
             wins++
         } 
@@ -42,7 +44,7 @@ function readForms(){
 
 
 
-function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption){
+function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWaters, hasDeathNecklace, playerDefense, swingOption, forceBackAttack){
     //Set up the fight.
     attackPower = checkForNumber(attackPower)
     playerHp = checkForNumber(playerHp)
@@ -70,8 +72,11 @@ function fightDragonlord(attackPower, playerHp, playerMaxHp, playerMp, fairyWate
     while(playerHp > 0 && dlHp > 0){
         //Check for DL2 ambush.
         if(turnCounter === 1){
-            if(randomNumber(1, 3) === 1){
-                playerHp -= dragonlordTurn(dlMinAttack, dlMaxAttack) 
+            //Allow the player to force a back attack, randomize, or force the Dragonlord to attack first.
+            if(forceBackAttack != "Player"){
+                if(randomNumber(1, 3) === 1 || forceBackAttack === "Dragonlord"){
+                    playerHp -= dragonlordTurn(dlMinAttack, dlMaxAttack) 
+                }
             } 
         }
         //Player's turn.  True represents casting HEALMORE, otherwise attack.
@@ -214,6 +219,11 @@ function findDeathNecklaceChecked(){
 
 function getSwingOption(){
     let selectedValue = document.querySelector('input[name="swing-options"]:checked').value
+    return selectedValue
+}
+
+function getBackAttackOption(){
+    let selectedValue = document.querySelector('input[name="back-attack-options"]:checked').value
     return selectedValue
 }
 
