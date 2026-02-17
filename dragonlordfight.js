@@ -136,7 +136,7 @@ function dragonlordTurn(minAttack,maxAttack){
             case 7:
                 damage = 46
                 break
-            case 6:
+            case 8:
                 damage = 48
                 break;
         }
